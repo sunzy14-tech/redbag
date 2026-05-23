@@ -1,6 +1,6 @@
 {
   "description": "商户品牌红包小程序",
-  "appid": "touristappid",
+  "appid": "wx24b0158efb3c4c85",
   "projectname": "redbag-miniprogram",
   "miniprogramRoot": "./",
   "compileType": "miniprogram",
@@ -8,6 +8,31 @@
     "urlCheck": true,
     "es6": true,
     "postcss": true,
-    "minified": true
-  }
+    "minified": true,
+    "compileWorklet": false,
+    "uglifyFileName": false,
+    "uploadWithSourceMap": true,
+    "enhance": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "minifyWXML": true,
+    "localPlugins": false,
+    "disableUseStrict": false,
+    "useCompilerPlugins": false,
+    "condition": false,
+    "swc": false,
+    "disableSWC": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "simulatorPluginLibVersion": {},
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "editorSetting": {}
 }

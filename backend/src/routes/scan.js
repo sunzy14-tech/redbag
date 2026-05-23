@@ -9,7 +9,32 @@ const { sendRedbag } = require('../services/wechatPayService');
 const router = express.Router();
 
 router.get('/entry', (req, res) => {
-  res.json({ success: true, data: { code: req.query.code || '' } });
+  const code = req.query.code || '';
+  if ((req.headers.accept || '').includes('application/json')) {
+    return res.json({ success: true, data: { code } });
+  }
+  return res.type('html').send(`<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>扫码领红包</title>
+  <style>
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f7f8fa; color: #1f2937; }
+    main { width: min(520px, calc(100vw - 32px)); padding: 28px; border: 1px solid #e5e7eb; border-radius: 10px; background: #fff; box-shadow: 0 16px 60px rgba(31, 41, 55, .08); }
+    h1 { margin: 0 0 12px; font-size: 24px; }
+    p { margin: 0; color: #667085; line-height: 1.7; }
+    code { display: block; margin-top: 18px; padding: 12px; border-radius: 8px; background: #f3f4f6; word-break: break-all; color: #374151; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>请在微信小程序中领取红包</h1>
+    <p>如果你是用微信扫一扫打开了这个页面，需要先在微信公众平台配置“扫普通链接二维码打开小程序”，或进入小程序后点击“立即扫描瓶盖码”。</p>
+    <code>${String(code).replace(/[<>&"]/g, (ch) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[ch]))}</code>
+  </main>
+</body>
+</html>`);
 });
 
 router.post('/redeem', validate(Joi.object({

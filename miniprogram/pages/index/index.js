@@ -3,15 +3,23 @@ const { request } = require('../../utils/request');
 
 function extractCode(scanResult) {
   if (!scanResult) return '';
-  const queryIndex = scanResult.indexOf('?');
-  if (queryIndex < 0) return scanResult;
-  const query = scanResult.slice(queryIndex + 1).split('#')[0];
+  const text = decodeURIComponent(scanResult);
+  const queryIndex = text.indexOf('?');
+  if (queryIndex < 0) return text;
+  const query = text.slice(queryIndex + 1).split('#')[0];
   const pairs = query.split('&');
   for (const pair of pairs) {
     const parts = pair.split('=');
     if (parts[0] === 'code') return decodeURIComponent(parts.slice(1).join('='));
   }
-  return scanResult;
+  return text;
+}
+
+function extractLaunchCode(options = {}) {
+  if (options.code) return decodeURIComponent(options.code);
+  if (options.q) return extractCode(options.q);
+  if (options.scene) return extractCode(options.scene);
+  return '';
 }
 
 Page({
@@ -26,15 +34,24 @@ Page({
     }
   },
 
-  onLoad() {
-    this.ensureLogin();
+  onLoad(options) {
+    const code = extractLaunchCode(options);
+    this.ensureLogin(() => {
+      if (code) this.redeemCode(code);
+    });
   },
 
-  ensureLogin() {
+  ensureLogin(done) {
     wx.login({
       success: (res) => {
         app.globalData.openid = wx.getStorageSync('openid') || `dev-openid-${res.code || Date.now()}`;
         wx.setStorageSync('openid', app.globalData.openid);
+        if (done) done();
+      },
+      fail: () => {
+        app.globalData.openid = wx.getStorageSync('openid') || `dev-openid-${Date.now()}`;
+        wx.setStorageSync('openid', app.globalData.openid);
+        if (done) done();
       }
     });
   },
