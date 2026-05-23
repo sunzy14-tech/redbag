@@ -45,3 +45,14 @@ POST /v3/fund-app/brand-redpacket/brand-merchant-batches
 ```
 
 `.env` 中配置商户号、品牌 ID、品牌 AppID、模板 ID、商户 API 私钥、商户证书序列号、微信支付平台证书序列号或微信支付公钥 ID。默认 `WECHAT_PAY_ENABLED=false` 时为模拟发放，便于先完成测试部署；正式发放前需要在微信支付商户平台开通品牌红包能力并配置模板。
+
+## 服务器部署
+
+生产部署文件在 `deploy/`：
+
+- `docker-compose.prod.yml`：MySQL、后端、Nginx 三容器部署。
+- `server.env.example`：服务器环境变量模板。
+- `nginx.conf`：HTTPS 反向代理配置。
+- `deploy.sh`：服务器拉取 GitHub 代码并启动服务的脚本。
+
+详细步骤见 `docs/server-deploy.md`。
