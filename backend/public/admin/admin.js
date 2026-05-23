@@ -25,6 +25,25 @@ async function api(path, options = {}) {
   return data.data;
 }
 
+async function downloadFile(path, fileName) {
+  const res = await fetch(path, {
+    headers: token ? { Authorization: `Bearer ${token}` } : {}
+  });
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data.message || data.error || `下载失败 ${res.status}`);
+  }
+  const blob = await res.blob();
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = fileName || 'qrcodes.pdf';
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
 function money(cents) {
   if (cents === null || cents === undefined) return '-';
   return `¥${(Number(cents) / 100).toFixed(2)}`;
@@ -176,7 +195,8 @@ $('#batchList').addEventListener('click', async (event) => {
       method: 'POST',
       body: JSON.stringify({ format: 'pdf' })
     });
-    window.open(data.downloadUrl, '_blank');
+    await downloadFile(data.downloadUrl, data.fileName);
+    setMessage('#pageMessage', 'PDF 已生成并开始下载', 'ok');
   } catch (error) {
     setMessage('#pageMessage', error.message, 'error');
   }
