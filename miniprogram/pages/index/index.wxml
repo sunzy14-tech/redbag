@@ -7,7 +7,7 @@
     </view>
 
     <view class="scan-entry" bindtap="scanCode">
-      <view class="scan-icon">⌗</view>
+      <view class="scan-icon">扫</view>
       <view class="scan-copy">
         <view class="scan-title">立即扫描瓶盖码</view>
         <view class="scan-sub">打开摄像头，对准瓶盖内二维码</view>

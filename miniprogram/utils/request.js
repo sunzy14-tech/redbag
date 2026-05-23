@@ -26,4 +26,3 @@ function request({ url, method = 'GET', data = {}, header = {} }) {
 }
 
 module.exports = { request };
-
