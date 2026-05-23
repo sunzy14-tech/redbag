@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -10,6 +11,7 @@ const scanRoutes = require('./routes/scan');
 const { errorHandler } = require('./middleware/error');
 
 const app = express();
+const adminPublicDir = path.resolve(__dirname, '..', 'public', 'admin');
 
 app.use(helmet());
 app.use(cors());
@@ -53,6 +55,12 @@ app.get('/health', (req, res) => {
   }
   res.json({ success: true, data: { status: 'ok' } });
 });
+
+app.get('/admin', (_req, res) => {
+  res.sendFile(path.join(adminPublicDir, 'index.html'));
+});
+app.use('/admin', express.static(adminPublicDir));
+
 app.use('/api/auth', authRoutes);
 app.use('/api/admin/products', productRoutes);
 app.use('/api/admin/strategies', strategyRoutes);
