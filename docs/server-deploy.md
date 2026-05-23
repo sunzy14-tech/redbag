@@ -8,7 +8,7 @@ Recommended server:
 - 2 CPU / 4 GB RAM minimum
 - Ports 80 and 443 open
 - Docker Engine and Docker Compose plugin installed
-- A domain such as `api.your-domain.com` pointing to the server IP
+- A domain such as `pphb.newfuturecloud.com` pointing to the server IP
 
 Install Docker:
 
@@ -55,7 +55,7 @@ Put HTTPS certificates here:
 /opt/redbag/deploy/ssl/privkey.pem
 ```
 
-Update `deploy/nginx.conf` and replace `api.your-domain.com` with the real API domain.
+Update `deploy/nginx.conf` if the API domain changes.
 
 ## 4. Start Services
 
@@ -68,7 +68,7 @@ docker compose --env-file deploy/server.env -f deploy/docker-compose.prod.yml ps
 Health check:
 
 ```bash
-curl https://api.your-domain.com/health
+curl https://pphb.newfuturecloud.com/health
 ```
 
 Expected response:
@@ -83,11 +83,11 @@ Update `miniprogram/utils/config.js`:
 
 ```js
 module.exports = {
-  API_BASE_URL: 'https://api.your-domain.com'
+  API_BASE_URL: 'https://pphb.newfuturecloud.com'
 };
 ```
 
-In WeChat Mini Program Admin, add the same HTTPS domain to request legal domains.
+In WeChat Mini Program Admin, add `https://pphb.newfuturecloud.com` to request legal domains.
 
 ## 6. Upgrade
 
@@ -96,4 +96,3 @@ cd /opt/redbag
 git pull --ff-only origin main
 docker compose --env-file deploy/server.env -f deploy/docker-compose.prod.yml up -d --build
 ```
-
