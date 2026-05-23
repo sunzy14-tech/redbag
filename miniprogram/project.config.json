@@ -1,0 +1,14 @@
+{
+  "description": "商户品牌红包小程序",
+  "appid": "touristappid",
+  "projectname": "redbag-miniprogram",
+  "miniprogramRoot": "./",
+  "compileType": "miniprogram",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "postcss": true,
+    "minified": true
+  }
+}
+

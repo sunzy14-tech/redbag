@@ -1,0 +1,347 @@
+.page {
+  min-height: 100vh;
+  background: #f7f8fa;
+}
+
+.home {
+  padding: 24rpx 28rpx 48rpx;
+}
+
+.brand-panel {
+  min-height: 300rpx;
+  border-radius: 28rpx;
+  padding: 36rpx;
+  background: linear-gradient(135deg, #ff6b3d, #f0532e);
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+}
+
+.brand-panel::after {
+  content: "¥";
+  position: absolute;
+  right: -10rpx;
+  bottom: -58rpx;
+  font-size: 230rpx;
+  font-weight: 800;
+  opacity: 0.18;
+}
+
+.brand-tag {
+  display: inline-flex;
+  padding: 8rpx 18rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.25);
+  font-size: 22rpx;
+}
+
+.brand-title {
+  margin-top: 86rpx;
+  font-size: 48rpx;
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.brand-sub {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  line-height: 1.5;
+  opacity: 0.92;
+  max-width: 500rpx;
+}
+
+.scan-entry,
+.manual-box {
+  margin-top: 24rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.04);
+}
+
+.scan-entry {
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.scan-icon {
+  width: 104rpx;
+  height: 104rpx;
+  border-radius: 24rpx;
+  background: linear-gradient(135deg, #fff1eb, #ffe0d0);
+  color: #f0532e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 52rpx;
+  font-weight: 700;
+}
+
+.scan-copy {
+  flex: 1;
+}
+
+.scan-title {
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.scan-sub {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #6b7280;
+}
+
+.scan-arrow {
+  color: #9ca3af;
+  font-size: 50rpx;
+}
+
+.manual-box {
+  padding: 28rpx;
+}
+
+.manual-title {
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.manual-input {
+  margin-top: 20rpx;
+  height: 88rpx;
+  border-radius: 18rpx;
+  background: #f5f6f8;
+  padding: 0 24rpx;
+  font-size: 26rpx;
+}
+
+.ghost-btn {
+  margin-top: 20rpx;
+  height: 88rpx;
+  border-radius: 999rpx;
+  border: 2rpx solid #f0532e;
+  color: #f0532e;
+  font-size: 28rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scan-screen {
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 150rpx;
+}
+
+.scan-close {
+  position: fixed;
+  top: 64rpx;
+  right: 36rpx;
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44rpx;
+}
+
+.scan-tip,
+.scan-bottom {
+  font-size: 26rpx;
+  opacity: 0.85;
+}
+
+.scan-frame {
+  margin-top: 64rpx;
+  width: 480rpx;
+  height: 480rpx;
+  border: 2rpx solid rgba(255, 255, 255, 0.2);
+  border-radius: 20rpx;
+  position: relative;
+}
+
+.corner {
+  position: absolute;
+  width: 48rpx;
+  height: 48rpx;
+  border-color: #f0532e;
+}
+
+.lt {
+  top: -4rpx;
+  left: -4rpx;
+  border-top: 6rpx solid;
+  border-left: 6rpx solid;
+}
+
+.rt {
+  top: -4rpx;
+  right: -4rpx;
+  border-top: 6rpx solid;
+  border-right: 6rpx solid;
+}
+
+.lb {
+  bottom: -4rpx;
+  left: -4rpx;
+  border-bottom: 6rpx solid;
+  border-left: 6rpx solid;
+}
+
+.rb {
+  bottom: -4rpx;
+  right: -4rpx;
+  border-bottom: 6rpx solid;
+  border-right: 6rpx solid;
+}
+
+.scan-line {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 8%;
+  height: 4rpx;
+  background: linear-gradient(90deg, transparent, #f0532e, transparent);
+  box-shadow: 0 0 20rpx #f0532e;
+  animation: scanLine 1.6s linear infinite;
+}
+
+@keyframes scanLine {
+  0% { top: 8%; opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { top: 92%; opacity: 0; }
+}
+
+.scan-bottom {
+  margin-top: auto;
+  margin-bottom: 80rpx;
+}
+
+.winner-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #ffb74d 0%, #f0532e 60%, #c63d18 100%);
+  color: #fff;
+  padding: 140rpx 40rpx 70rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.winner-title {
+  font-size: 34rpx;
+  opacity: 0.95;
+}
+
+.winner-card {
+  width: 100%;
+  margin-top: 50rpx;
+  background: #fff;
+  color: #1a1a1a;
+  border-radius: 40rpx;
+  padding: 46rpx 40rpx;
+  text-align: center;
+  box-shadow: 0 24rpx 80rpx rgba(0, 0, 0, 0.2);
+}
+
+.winner-label {
+  font-size: 26rpx;
+  color: #9ca3af;
+}
+
+.winner-amount {
+  margin-top: 12rpx;
+  color: #f0532e;
+  font-size: 110rpx;
+  line-height: 1.08;
+  font-weight: 800;
+}
+
+.rmb {
+  font-size: 42rpx;
+  margin-right: 8rpx;
+}
+
+.winner-tag {
+  display: inline-flex;
+  margin-top: 22rpx;
+  padding: 8rpx 24rpx;
+  border-radius: 999rpx;
+  background: #fff1eb;
+  color: #f0532e;
+  font-size: 24rpx;
+}
+
+.divider {
+  margin: 34rpx 0;
+  border-top: 2rpx dashed #e5e7eb;
+}
+
+.winner-notes {
+  text-align: left;
+  color: #6b7280;
+  font-size: 24rpx;
+  line-height: 1.8;
+}
+
+.claim-btn,
+.primary-btn {
+  margin-top: 34rpx;
+  height: 96rpx;
+  border-radius: 999rpx;
+  background: linear-gradient(90deg, #ff6b3d, #f0532e);
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.link-btn {
+  margin-top: 30rpx;
+  color: #fff;
+  opacity: 0.9;
+  font-size: 26rpx;
+}
+
+.paid-page {
+  min-height: 100vh;
+  padding: 180rpx 44rpx 60rpx;
+  text-align: center;
+  background: #fff;
+}
+
+.paid-icon {
+  width: 132rpx;
+  height: 132rpx;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: #10b981;
+  color: #fff;
+  font-size: 74rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paid-title {
+  margin-top: 36rpx;
+  font-size: 40rpx;
+  font-weight: 800;
+}
+
+.paid-sub {
+  margin-top: 14rpx;
+  color: #6b7280;
+  font-size: 26rpx;
+}
+

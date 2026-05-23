@@ -1,0 +1,10 @@
+node_modules/
+.env
+.DS_Store
+*.log
+backend/storage/exports/*
+backend/storage/qrcodes/*
+!backend/storage/exports/.gitkeep
+!backend/storage/qrcodes/.gitkeep
+miniprogram/project.private.config.json
+

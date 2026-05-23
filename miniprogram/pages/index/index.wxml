@@ -1,0 +1,60 @@
+<view class="page">
+  <view wx:if="{{viewState === 'home'}}" class="home">
+    <view class="brand-panel">
+      <view class="brand-tag">瓶盖码专属福利</view>
+      <view class="brand-title">扫码开红包</view>
+      <view class="brand-sub">每个瓶盖码仅可领取一次，红包直接发放到微信。</view>
+    </view>
+
+    <view class="scan-entry" bindtap="scanCode">
+      <view class="scan-icon">⌗</view>
+      <view class="scan-copy">
+        <view class="scan-title">立即扫描瓶盖码</view>
+        <view class="scan-sub">打开摄像头，对准瓶盖内二维码</view>
+      </view>
+      <view class="scan-arrow">›</view>
+    </view>
+
+    <view class="manual-box">
+      <view class="manual-title">测试码</view>
+      <input class="manual-input" placeholder="开发联调时可粘贴二维码 code" value="{{manualCode}}" bindinput="onManualInput" />
+      <button class="ghost-btn" bindtap="redeemManual">提交测试码</button>
+    </view>
+  </view>
+
+  <view wx:elif="{{viewState === 'scanning'}}" class="scan-screen">
+    <view class="scan-close" bindtap="backHome">×</view>
+    <view class="scan-tip">请将瓶盖二维码放入框内</view>
+    <view class="scan-frame">
+      <view class="corner lt"></view>
+      <view class="corner rt"></view>
+      <view class="corner lb"></view>
+      <view class="corner rb"></view>
+      <view class="scan-line"></view>
+    </view>
+    <view class="scan-bottom">正在识别二维码...</view>
+  </view>
+
+  <view wx:elif="{{viewState === 'winner'}}" class="winner-page">
+    <view class="winner-title">恭喜中奖</view>
+    <view class="winner-card">
+      <view class="winner-label">获得微信红包</view>
+      <view class="winner-amount"><text class="rmb">¥</text>{{prize.amount}}</view>
+      <view class="winner-tag">{{prize.productName}}</view>
+      <view class="divider"></view>
+      <view class="winner-notes">
+        <view>红包金额由品牌活动策略实时计算。</view>
+        <view>同一个瓶盖码只能领取一次。</view>
+      </view>
+      <button class="claim-btn" loading="{{claiming}}" bindtap="claimRedbag">{{claiming ? '发放中...' : '领取到微信'}}</button>
+    </view>
+    <button class="link-btn" bindtap="backHome">继续扫码</button>
+  </view>
+
+  <view wx:elif="{{viewState === 'paid'}}" class="paid-page">
+    <view class="paid-icon">✓</view>
+    <view class="paid-title">红包已受理</view>
+    <view class="paid-sub">微信支付正在处理，请留意红包领取通知。</view>
+    <button class="primary-btn" bindtap="backHome">继续扫码</button>
+  </view>
+</view>
