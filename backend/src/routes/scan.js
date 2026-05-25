@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const { Joi, validate } = require('../validators/common');
 const { query, transaction } = require('../db/pool');
@@ -7,6 +8,13 @@ const { pickPrize, yuan } = require('../services/redbagService');
 const { sendRedbag } = require('../services/wechatPayService');
 
 const router = express.Router();
+const scanPublicDir = path.resolve(__dirname, '..', '..', 'public', 'scan');
+
+router.use(express.static(scanPublicDir, {
+  extensions: ['txt'],
+  index: false,
+  maxAge: '5m'
+}));
 
 router.get('/entry', (req, res) => {
   const code = req.query.code || '';
